@@ -1,0 +1,128 @@
+.DivMain {
+    /* width: calc(100vw - 350px); */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.ImgGame {
+    background: url('../../img/landscape.jpg') top;
+    background-size: 100% 100vh;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: calc(100% - 350px);
+    height: 100vh;
+    background-color: #33334d;
+    position: absolute;
+    z-index: 1;
+}
+
+.Operation {
+    z-index: 5;
+    background-color: cornsilk;
+    border-radius: 25px;
+    border: 2px solid black;
+    min-width: 100px;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 1.5em;
+    position: absolute;
+    top: 0;
+    left: 60%;
+    animation: opDown;
+    animation-duration: 10s;
+    animation-delay: 1s;
+    /* margin-top: 5px; */
+}
+
+@keyframes opDown {
+    0% {
+        top: 0vh;
+    }
+    5% {
+        top: 8vh;
+    }
+    10% {
+        top: 12vh;
+    }
+    15% {
+        top: 16vh;
+    }
+    20% {
+        top: 20vh;
+    }
+    25% {
+        top: 24vh;
+    }
+    30% {
+        top: 28vh;
+    }
+    35% {
+        top: 32vh;
+    }
+    40% {
+        top: 36vh;
+    }
+    45% {
+        top: 40vh;
+    }
+    50% {
+        top: 44vh;
+    }
+    55% {
+        top: 48vh;
+    }
+    60% {
+        top: 52vh
+    }
+    65% {
+        top: 56vh;
+    }
+    70% {
+        top: 60vh;
+    }
+    75% {
+        top: 64vh;
+    }
+    80% {
+        top: 68vh;
+    }
+    85% {
+        top: 72vh;
+    }
+    90% {
+        top: 74vh;
+    }
+    95% {
+        top: 76vh
+    }
+    100% {
+        top: 78vh;
+    }
+}
+
+.Result {
+    z-index: 5;
+    /* background-color: cornsilk; */
+    /* position: absolute; */
+    /* bottom: 10px; */
+    margin-bottom: 2px;
+}
+
+.Res1, .Res2, .Res3 {
+    font-size: 40px;
+    margin: 0 20px;
+    background-color: lightskyblue;
+    border-radius: 25px;
+    border: 2px solid white;
+    padding: 0 20px;
+}
+
+.Res1, .Res2, .Res3, :hover{
+    cursor: pointer;
+}
+
