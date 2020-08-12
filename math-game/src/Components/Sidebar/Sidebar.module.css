@@ -4,4 +4,62 @@
     display: flex;
     flex-direction: column;
     background-color: #33334d;
+    color: whitesmoke;
+    align-items: center;
+}
+
+.DivSidebar h3 {
+    font-size: 26px;
+    padding: 0;
+    margin: 0;
+}
+
+/* .DivTopPlayers {
+    margin-top: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.DivTopPlayers h4 {
+    margin: 0;
+    font-size: 20px;
+} */
+
+.DivOption {
+    display: flex;
+    background-color: green;
+    margin-top: 40px;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+.Form p{
+    font-size: 24px;
+}
+
+.Form input[type="radio"]{
+    margin-right: 10px;
+}
+
+
+
+.FormDiv {
+    display: flex;
+    align-items: center;
+
+    background-color: red;
+    margin-bottom: 10px;
+}
+
+
+.FormDivInput {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

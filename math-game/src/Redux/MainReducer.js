@@ -1,5 +1,6 @@
 const initialState = {
-    score: 0
+    score: 0,
+    gameToggle: false
   }
 
   const MainReducer = (previousState = initialState, action) => {
@@ -12,9 +13,11 @@ const initialState = {
 
       previousState.score = 0
       return {...previousState}
-
     }
-    
+    else if(action.type === 'GAME_TOGGLE'){
+        previousState.gameToggle = !previousState.gameToggle
+    }
+
     return {...previousState}
   }
   

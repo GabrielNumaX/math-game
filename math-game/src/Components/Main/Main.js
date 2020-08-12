@@ -13,6 +13,7 @@ class Main extends Component {
             animation: false,
             animationPlay: false,
             animationPause: false,
+            animationDuration: 10000,
             num1: null,
             num2: null,
             res1: null,
@@ -31,15 +32,49 @@ class Main extends Component {
 
         this.setNumber();
 
+        this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`;
+
     }
 
     componentDidUpdate(prevProps, prevState) {
 
         if(prevState.res1 !== this.state.res1) {
-            console.log('didUp')
+            console.log('didUp res')
 
             this.setPos();
         }
+
+        // else if(prevState.animationPlay !== this.state.animationPlay ) {
+            
+        //     console.log('didUpAnimation');
+        //     this.setNumber();
+
+        //     this.gameStart();
+
+        //     console.log(this.opRef.current);
+
+        //     // this.opRef.current.style.animation = 'opDown';
+        // }
+
+        else if(prevProps.gameToggleProps !== this.props.gameToggleProps){
+
+            console.log('didUp Game toggle');
+
+            this.setNumber();
+
+            this.setState({
+                animation: true,
+                animationPause: false,
+                animationPlay: true,
+            })
+
+            this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`
+
+            console.log(this.opRef.current.style.animationDuration)
+        }
+
+        console.log('didUpOut');
+
     }
 
 
@@ -57,6 +92,8 @@ class Main extends Component {
                 animationPause: true,
             })
         }
+
+        console.log(rect);
 
         if(this.state.animation) {
             window.requestAnimationFrame(this.getPosition);
@@ -133,7 +170,7 @@ class Main extends Component {
         })
     }
 
-    onGame = (pos) => {
+    onScore = (pos) => {
 
         if(pos === this.state.num1 + this.state.num2 ){
 
@@ -142,7 +179,34 @@ class Main extends Component {
             this.setState({
                 animation: false,
                 animationPause: true,
-            })
+            });
+
+            this.props.addScore(10);
+
+            if(this.state.animationDuration > 50){
+
+                this.setState({
+                    animationDuration: this.state.animationDuration - 50,
+                })
+            }
+
+            setTimeout(() => { 
+                // this.opRef.current.style.animation = 'none';
+              
+                this.opRef.current.style.backgroundColor = 'cornsilk';
+
+                this.setState({
+                    animationPlay: false,
+                })
+
+                this.props.gameToggle();
+
+                console.log('CLICK');
+
+            }, 330);
+
+            
+            
         }
         else {
             this.opRef.current.style.backgroundColor = 'red';
@@ -151,17 +215,33 @@ class Main extends Component {
                 animation: false,
                 animationPause: true,
             })
+
+            this.opRef.current.style.animationPlayState = 'paused';
+
+            setTimeout(() => { 
+                // this.opRef.current.style.animation = 'none';
+              
+                // this.opRef.current.style.backgroundColor = 'cornsilk';
+
+                // ESTO SE DEJA COMENTADO HASTA HACER EL GAME OVER
+                // this.setState({
+                //     start: false,
+                // })
+
+                // this.props.gameToggle();
+
+            }, 330);
         }
     }
 
    
 
-    
-
     render() {
 
         
         console.log('render')
+
+        // console.log(this.props.gameToggleProps);
         // console.log(this.state);
 
         if(this.state.animation) {
@@ -173,8 +253,6 @@ class Main extends Component {
         let operation = [css.OperationNoShow];
 
         let result = [css.ResultNoShow];
-
-        // let animation = [];
 
         if(this.state.start) {
 
@@ -218,15 +296,15 @@ class Main extends Component {
 
                 <div className={result.join(' ')}>
 
-                    <span className={css.Res1} onClick={this.state.animation ? () => this.onGame(this.state.pos1) : null}>
+                    <span className={css.Res1} onClick={this.state.animation ? () => this.onScore(this.state.pos1) : null}>
                         {this.state.pos1}
                     </span>
 
-                    <span className={css.Res2} onClick={this.state.animation ? () => this.onGame(this.state.pos2) : null}>
+                    <span className={css.Res2} onClick={this.state.animation ? () => this.onScore(this.state.pos2) : null}>
                         {this.state.pos2}
                     </span>
 
-                    <span className={css.Res3} onClick={this.state.animation ? () => this.onGame(this.state.pos3) : null}>
+                    <span className={css.Res3} onClick={this.state.animation ? () => this.onScore(this.state.pos3) : null}>
                         {this.state.pos3}
                     </span>
 
@@ -237,6 +315,13 @@ class Main extends Component {
     }
 }
 
+
+// this reads from STORE
+const mapGlobalStateToProps = (globalState) => {
+    return {
+        gameToggleProps: globalState.gameToggle,
+    }
+}
 
 // this writes to STORE
 const mapDispatchToProps = (dispatch) => {
@@ -249,6 +334,9 @@ const mapDispatchToProps = (dispatch) => {
         resetScore: () => {
             dispatch({type: 'RESET_SCORE'})
         },
+        gameToggle: () => {
+            dispatch({type: 'GAME_TOGGLE'})
+        },
         checkTask: (pos) => {
             dispatch({type: 'TODAY_TASK_CHECKED', index: pos})
         },
@@ -260,5 +348,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-export default connect(null, mapDispatchToProps)(Main);
+export default connect(mapGlobalStateToProps, mapDispatchToProps)(Main);
 

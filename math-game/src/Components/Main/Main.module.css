@@ -1,5 +1,4 @@
 .DivMain {
-    /* width: calc(100vw - 350px); */
     width: 100%;
     height: 100vh;
     display: flex;
@@ -43,6 +42,10 @@
     border-radius: 15px;
 }
 
+.StartBtn:hover {
+    cursor: pointer;
+}
+
 .OperationNoShow {
     display: none;
 }
@@ -55,7 +58,7 @@
     min-width: 100px;
     padding: 10px 20px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 30px;
     position: absolute;
     top: 0;
     margin: auto;
@@ -67,7 +70,7 @@
 
 .OperationAnimation {
     animation: opDown;
-    animation-duration: 10s;
+    /* animation-duration: 10s; */
     /* animation-delay: 1s; */
     animation-play-state: initial;
 }
@@ -100,10 +103,26 @@
     padding: 0 20px;
 }
 
-.Res1, .Res2, .Res3, :hover{
+.Res1:hover {
     cursor: pointer;
 }
 
+.Res2:hover {
+    cursor: pointer;
+}
+
+.Res3:hover {
+    cursor: pointer;
+}
+
+/* @keyframes opDown {
+    0% {
+        top: 0vh;
+    }
+    100% {
+        top: 77vh;
+    }
+} */
 
 @keyframes opDown {
     0% {
