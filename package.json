@@ -4,12 +4,21 @@
   "description": "a simple math game for kids",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon /index.js",
+    "process": "nodemon process.js"
   },
   "author": "NumaX",
   "license": "ISC",
   "dependencies": {
+    "array-move": "^3.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "mongoose": "^5.9.28"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.4"
   }
 }

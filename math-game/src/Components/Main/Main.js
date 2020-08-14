@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import {connect} from 'react-redux';
 
+import LoseModal from '../Modals/LoseModal';
+
 import css from './Main.module.css';
 
 class Main extends Component {
@@ -19,9 +21,12 @@ class Main extends Component {
             res1: null,
             res2: null,
             res3: null,
+            rightRes: null,
             pos1: null,
             pos2: null,
             pos3: null,
+            sign: null,
+            loseModal: false,
         }
 
         this.opRef = React.createRef();
@@ -30,7 +35,7 @@ class Main extends Component {
 
     componentDidMount() {
 
-        this.setNumber();
+        // this.setNumber();
 
         this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`;
 
@@ -38,27 +43,26 @@ class Main extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if(prevState.res1 !== this.state.res1) {
-            console.log('didUp res')
+        // if(prevProps.digitProp !== this.props.digitProp) {
 
-            this.setPos();
-        }
-
-        // else if(prevState.animationPlay !== this.state.animationPlay ) {
-            
-        //     console.log('didUpAnimation');
         //     this.setNumber();
-
-        //     this.gameStart();
-
-        //     console.log(this.opRef.current);
-
-        //     // this.opRef.current.style.animation = 'opDown';
         // }
 
+        // if(prevState.res1 !== this.state.res1) {
+        //     // console.log('didUp res')
+
+        //     this.setPos();
+        //     // this.setNumber();
+        // }
+        if(prevState.rightRes !== this.state.rightRes) {
+            // console.log('didUp res')
+
+            this.setPos();
+            // this.setNumber();
+        }
         else if(prevProps.gameToggleProps !== this.props.gameToggleProps){
 
-            console.log('didUp Game toggle');
+            // console.log('didUp Game toggle');
 
             this.setNumber();
 
@@ -70,13 +74,14 @@ class Main extends Component {
 
             this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`
 
-            console.log(this.opRef.current.style.animationDuration)
+            // console.log(this.opRef.current.style.animationDuration)
         }
-
-        console.log('didUpOut');
-
     }
 
+    /*
+    *    this gets the position of the animation upon being animated
+    *    and checks if it reaches the bottom
+    */
 
     getPosition = () => {
 
@@ -90,10 +95,9 @@ class Main extends Component {
             this.setState({
                 animation: false,
                 animationPause: true,
+                loseModal: true,
             })
         }
-
-        console.log(rect);
 
         if(this.state.animation) {
             window.requestAnimationFrame(this.getPosition);
@@ -101,29 +105,173 @@ class Main extends Component {
         }
     }
 
+    /*
+    *    this function set the numbers for the calculation
+    *   upon the number of digits (1, 2 or 3)
+    */
+
     setNumber = () => {
         // const num = Math.floor(Math.random() * (max - min + 1)) + min;
 
-        const num1 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-        const num2 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+        // console.log('set number');
+
+        let num1, num2 = null;
+
+        if(this.props.digitProp === 1) {
+
+            num1 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            num2 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+        }
+        else if(this.props.digitProp === 2){
+
+            // console.log('set numn digit 2')
+
+            num1 = Math.floor(Math.random() * (99 - 10 + 1)) + 10;
+            num2 = Math.floor(Math.random() * (99 - 10 + 1)) + 10;
+
+            console.log('num1, num2');
+            console.log(num1, num2)
+        }
+        else if(this.props.digitProp === 3){
+
+            num1 = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+            num2 = Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+        }
 
         this.setState({
             num1: num1,
-            num2: num2
+            num2: num2,
         })
     }
 
+
+    /**
+     * this function sets the sing (+ or -) upon a random number (0 or 1)
+     */
+
+    setSign = () => {
+
+        const num = Math.floor(Math.random() * (1 - 0 + 1)) + 0;
+
+        if(num === 0){
+
+            this.setState({sign: '+'})
+        }
+        else{
+
+            this.setState({sign: '-'})
+        }
+    }
+
+    /**
+     * this one set the rightRes and two wrong results upon random 
+     * numbers, if's are to check for NO negative numbers on rightRes or wrong 
+     * answers
+     */
+
     setResult = () => {
 
-        const res = this.state.num1 + this.state.num2;
+        let res = null;
+        let wrong1,wrong2 = null;
 
-        const wrong1 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+        if(this.props.digitProp === 1) {
 
-        const wrong2 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            wrong1 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+            wrong2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
 
-        // console.log(res, wrong1, wrong2)
+            if(this.state.sign === '+'){
 
-        // this.setPos(res, wrong1, wrong2)
+                res = this.state.num1 + this.state.num2;
+
+                wrong1 = res + wrong1;
+                wrong2 = res + wrong2;
+            }
+            else if(this.state.sign === '-'){
+                
+                if(this.state.num1 > this.state.num2){
+    
+                    res = this.state.num1 - this.state.num2
+
+                    if(res > wrong1){
+
+                        wrong1 = res - wrong1;
+                    }
+                    else {
+                        wrong1 = wrong1 - res;
+                    }
+
+                    if(res > wrong2) {
+
+                        wrong2 = res - wrong2;
+                    }
+                    else {
+                        wrong2 = wrong2 - res;
+                    }
+
+                }
+                else {
+    
+                    res = this.state.num2 -  this.state.num1
+                }
+            }
+        }
+        else if(this.props.digitProp === 2 || this.props.digitProp === 3) {
+
+            wrong1 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+            wrong2 = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+
+            if(this.state.sign === '+'){
+
+                res = this.state.num1 + this.state.num2;
+
+                wrong1 = res + wrong1;
+                wrong2 = res + wrong2;
+            }
+            else if(this.state.sign === '-'){
+                
+                if(this.state.num1 > this.state.num2){
+    
+                    res = this.state.num1 - this.state.num2
+
+                    if(res > wrong1){
+
+                        wrong1 = res - wrong1;
+                    }
+                    else {
+                        wrong1 = wrong1 - res;
+                    }
+
+                    if(res > wrong2) {
+
+                        wrong2 = res - wrong2;
+                    }
+                    else {
+                        wrong2 = wrong2 - res;
+                    }
+
+                }
+                else {
+    
+                    res = this.state.num2 -  this.state.num1
+
+                    if(res > wrong1){
+
+                        wrong1 = res - wrong1;
+                    }
+                    else {
+                        wrong1 = wrong1 - res;
+                    }
+
+                    if(res > wrong2) {
+
+                        wrong2 = res - wrong2;
+                    }
+                    else {
+                        wrong2 = wrong2 - res;
+                    }
+                }
+            }
+        }
 
         if(wrong1 === res || wrong2 === res || wrong1 === wrong2){
 
@@ -132,12 +280,18 @@ class Main extends Component {
         else {
 
             this.setState({
-                res1: res,
+                // res1: res,
+                rightRes: res,
                 res2: wrong1,
                 res3: wrong2,
             })
         }
     }
+
+    /**
+     * This function set random positions for the rightRes and wrong answers
+     * which are rendered on screen
+     */
 
     setPos = () => {
         const one = Math.floor(Math.random() * (3 - 1 + 1)) + 1;
@@ -151,7 +305,7 @@ class Main extends Component {
             // console.log('pos')
 
             this.setState({
-                ['pos'+one]: this.state.res1,
+                ['pos'+one]: this.state.rightRes,
                 ['pos'+two]: this.state.res2,
                 ['pos'+three]: this.state.res3,
             })
@@ -162,17 +316,41 @@ class Main extends Component {
         }
     }
 
+    /**
+     * this just starts the game, sets the sign and numbers
+     * and checks that numbers of digits where selected
+     */
+
     gameStart = () => {
 
-        this.setState({
-            start: true,
-            animationPlay: true,
-        })
+        if(this.props.digitProp === null){
+
+            alert('Please select number of digits');
+        }
+        else {
+
+            this.setSign();
+            this.setNumber();
+
+            this.setState({
+                start: true,
+                animationPlay: true,
+            })
+        }
     }
+
+    /**
+     * this function checks that random position equals rightRes
+     * then pauses animation, changes color of animation and increments score
+     * it also sets sign again, decrements animation duration
+     * and after 330ms continues game,
+     * 
+     */
 
     onScore = (pos) => {
 
-        if(pos === this.state.num1 + this.state.num2 ){
+        // if(pos === this.state.num1 + this.state.num2 ){
+        if(pos === this.state.rightRes){
 
             this.opRef.current.style.backgroundColor = 'green';
 
@@ -182,6 +360,8 @@ class Main extends Component {
             });
 
             this.props.addScore(10);
+
+            this.setSign();
 
             if(this.state.animationDuration > 50){
 
@@ -201,7 +381,7 @@ class Main extends Component {
 
                 this.props.gameToggle();
 
-                console.log('CLICK');
+                // console.log('CLICK');
 
             }, 330);
 
@@ -214,6 +394,8 @@ class Main extends Component {
             this.setState({
                 animation: false,
                 animationPause: true,
+                start: false,
+                loseModal: true,
             })
 
             this.opRef.current.style.animationPlayState = 'paused';
@@ -239,10 +421,16 @@ class Main extends Component {
     render() {
 
         
-        console.log('render')
+        // console.log('render NUMS, rightRes')
+        // console.log(this.state.num1, this.state.num2, this.state.rightRes);
+        // console.log('RESs');
+        // console.log(this.state.res2, this.state.res3, this.state.rightRes);
+        // console.log('POSs')
+        // console.log(this.state.pos1, this.state.pos2, this.state.pos3)
+
 
         // console.log(this.props.gameToggleProps);
-        // console.log(this.state);
+        // console.log(this.state.sign);
 
         if(this.state.animation) {
             this.getPosition();
@@ -286,13 +474,41 @@ class Main extends Component {
 
                 </div>
 
-                <span ref={this.opRef} className={operation.join(' ')} 
+                <div ref={this.opRef} className={operation.join(' ')} 
                     onAnimationStart={() => {this.setState({animation: true}); this.setResult()}}
                     onAnimationEnd={() => this.setState({animation: false})}
 
                     >
-                    {`${this.state.num1} +  ${this.state.num2}`}
-                </span>
+                    {/* {
+                        this.state.num1 > this.state.num2 
+                        ? 
+                        `${this.state.num1} ${this.state.sign}  ${this.state.num2}`
+                        :
+                        `${this.state.num2} ${this.state.sign}  ${this.state.num1}`
+                    } */}
+
+                    <span>
+                        {
+                            this.state.num1 > this.state.num2 
+                            ? 
+                            this.state.num1
+                            :
+                            this.state.num2
+                        }
+                    </span>
+
+                    <span className={css.SpanSign}>{this.state.sign}</span>
+
+                    <span>
+                        {
+                            this.state.num2 > this.state.num1 
+                            ? 
+                            this.state.num2
+                            :
+                            this.state.num1
+                        }
+                    </span>
+                </div>
 
                 <div className={result.join(' ')}>
 
@@ -310,6 +526,15 @@ class Main extends Component {
 
                 </div>
 
+                {
+                    this.state.loseModal ? 
+                        <LoseModal 
+                            close={() => this.setState({loseModal: false})}
+                            points={this.props.score}                />
+                    : 
+                    null
+                }
+
             </div>
         )
     }
@@ -320,6 +545,8 @@ class Main extends Component {
 const mapGlobalStateToProps = (globalState) => {
     return {
         gameToggleProps: globalState.gameToggle,
+        digitProp: globalState.digits,
+        score: globalState.score,
     }
 }
 

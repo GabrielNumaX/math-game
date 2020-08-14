@@ -27,6 +27,10 @@ const Welcome = () => {
                         Play
                     </Link>
 
+                    <Link className={css.Link} to='/top-players'>
+                        Top Players
+                    </Link>
+
                 </div>
 
 

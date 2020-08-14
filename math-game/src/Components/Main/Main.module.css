@@ -66,6 +66,12 @@
     display: block;
 }
 
+.SpanSign {
+    /* color: rgb(19, 167, 0); */
+    margin: 0 10px;
+    font-size: 32px;
+}
+
 
 
 .OperationAnimation {
@@ -89,18 +95,19 @@
     /* background-color: cornsilk; */
     /* position: absolute; */
     /* bottom: 10px; */
-    margin-bottom: 2px;
+    margin-bottom: 6px;
 }
 
 
 
 .Res1, .Res2, .Res3 {
-    font-size: 40px;
+    font-size: 35px;
     margin: 0 20px;
+    /* margin-bottom: 30px; */
     background-color: lightskyblue;
     border-radius: 25px;
     border: 2px solid white;
-    padding: 0 20px;
+    padding: 4px 20px;
 }
 
 .Res1:hover {

@@ -1,6 +1,7 @@
 const initialState = {
     score: 0,
-    gameToggle: false
+    gameToggle: false,
+    digits: null,
   }
 
   const MainReducer = (previousState = initialState, action) => {
@@ -10,12 +11,14 @@ const initialState = {
        return {...previousState};
     }
     else if (action.type === 'RESET_SCORE'){
-
       previousState.score = 0
       return {...previousState}
     }
     else if(action.type === 'GAME_TOGGLE'){
         previousState.gameToggle = !previousState.gameToggle
+    }
+    else if(action.type === 'SET_DIGIT'){
+      previousState.digits = action.digitAction
     }
 
     return {...previousState}
