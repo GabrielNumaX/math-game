@@ -1,6 +1,8 @@
 import React from 'react';
 
-import css from './Game.module.css';
+// import css from './Game.module.css';
+
+import '../../Sass/Game.scss'
 
 import Main from '../Main/Main';
 import Sidebar from '../Sidebar/Sidebar';
@@ -9,10 +11,10 @@ import Sidebar from '../Sidebar/Sidebar';
 const Game = (props) => {
 
     return(
-        <div className={css.GameContainer}>
+        <div className='GameContainer'>
 
-            <Sidebar className={css.Sidebar}/>
-            <Main className={css.Main}/>
+            <Sidebar className='Sidebar'/>
+            <Main className='Main'/>
         </div>
     )
 }

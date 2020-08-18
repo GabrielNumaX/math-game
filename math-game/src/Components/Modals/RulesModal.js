@@ -1,13 +1,15 @@
 import React from 'react';
 
-import css from './RulesModal.module.css';
+// import css from './RulesModal.module.css';
+
+import '../../Sass/RulesModal.scss'
 
 const RulesModal = (props) => {
 
     return(
-        <div className={css.Modal} onClick={props.close}>
+        <div className='Modal'>
 
-            <div className={css.ModalContent}>
+            <div className='ModalContent'>
 
                 <h5>Rules</h5>
 

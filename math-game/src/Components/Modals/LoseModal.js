@@ -1,6 +1,8 @@
 import React, {useState}from 'react';
 
-import css from './LoseModal.module.css';
+// import css from './LoseModal.module.css';
+
+import '../../Sass/LoseModal.scss';
 
 const LoseModal = (props) => {
 
@@ -22,11 +24,11 @@ const LoseModal = (props) => {
 
 
     return(
-        <div className={css.Modal}>
+        <div className='Modal'>
 
-            <div className={css.ModalContent}>
+            <div className='ModalContent'>
 
-                <div className={css.DivClose}>
+                <div className='DivClose'>
                     <span onClick={props.close}>&times;</span>
                 </div>
 
@@ -37,16 +39,16 @@ const LoseModal = (props) => {
                 <p>
                     You are in the <span>{props.points}</span> position
                 </p>
-                <form className={css.Form} onSubmit={(e) => nameSubmit(e)}>
+                <form className='FormModal' onSubmit={(e) => nameSubmit(e)}>
                     <p>Enter your Name in the Top Players List</p>
 
-                    <div className={css.FormDiv}>
+                    <div className='FormDivModal'>
                         <label>Name:</label>
                         <input type='text' value={name} placeholder='Your Name here...'
                             onChange={(e) => setName(e.target.value)}></input>
                     </div>
 
-                    <div className={css.FormDivBtn}>
+                    <div className='FormDivBtnModal'>
                         <input type='submit' value='Submit Name'></input>
                     </div>   
                 </form>

@@ -4,7 +4,9 @@ import {Link} from 'react-router-dom'
 
 import RulesModal from '../Modals/RulesModal';
 
-import css from './Welcome.module.css';
+// import css from './Welcome.module.css';
+
+import '../../Sass/Welcome.scss';
 
 const Welcome = () => {
 
@@ -12,22 +14,22 @@ const Welcome = () => {
 
     return(
 
-        <div className={css.DivWelcome}>
+        <div className='DivWelcome'>
 
-            <div className={css.DivTitle}>
+            <div className='DivTitle'>
 
                 <h1>Welcome To MathTrix</h1>
                 <h2>A Math Game for Children</h2>
 
-                <div className={css.DivBtns}>
+                <div className='DivBtns'>
 
                     <button onClick={() => setModal(true)}>Rules</button>
 
-                    <Link className={css.Link} to='/play'>
+                    <Link className='Link' to='/play'>
                         Play
                     </Link>
 
-                    <Link className={css.Link} to='/top-players'>
+                    <Link className='Link' to='/top-players'>
                         Top Players
                     </Link>
 

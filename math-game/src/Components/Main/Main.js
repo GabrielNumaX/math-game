@@ -4,7 +4,9 @@ import {connect} from 'react-redux';
 
 import LoseModal from '../Modals/LoseModal';
 
-import css from './Main.module.css';
+// import css from './Main.module.css';
+
+import '../../Sass/Main.scss';
 
 class Main extends Component {
     constructor(props) {
@@ -88,7 +90,7 @@ class Main extends Component {
         const el = this.opRef.current;
         const rect = el.getBoundingClientRect();
 
-        if(rect.top >= (window.innerHeight * 77) / 100){
+        if(rect.top >= (window.innerHeight * 75) / 100){
 
             el.style.backgroundColor = 'red';
 
@@ -436,41 +438,41 @@ class Main extends Component {
             this.getPosition();
         }
 
-        let game = [css.StartGame]
+        let game = ['StartGame']
 
-        let operation = [css.OperationNoShow];
+        let operation = ['OperationNoShow'];
 
-        let result = [css.ResultNoShow];
+        let result = ['ResultNoShow'];
 
         if(this.state.start) {
 
-            game.push(css.StartGameNoShow)
+            game.push('StartGameNoShow')
 
-            operation.push(css.Operation);
+            operation.push('Operation');
 
-            result.push(css.Result)
+            result.push('Result')
         }
         
         if(this.state.animationPlay) {
 
-            operation.push(css.OperationAnimation)
+            operation.push('OperationAnimation')
         }
 
         if(this.state.animationPause) {
             
-            operation.push(css.OperationAnimationPause)
+            operation.push('OperationAnimationPause')
         }
 
         return(
-            <div className={css.DivMain}>
+            <div className='DivMain'>
 
-                <div className={css.ImgGame}>
+                <div className='ImgGame'>
 
                 </div>
 
                 <div className={game.join(' ')}>
 
-                    <button className={css.StartBtn} onClick={this.gameStart}>Start Game</button>
+                    <button className='StartBtn' onClick={this.gameStart}>Start Game</button>
 
                 </div>
 
@@ -489,7 +491,7 @@ class Main extends Component {
 
                     <span>
                         {
-                            this.state.num1 > this.state.num2 
+                            this.state.num1 >= this.state.num2 
                             ? 
                             this.state.num1
                             :
@@ -497,11 +499,11 @@ class Main extends Component {
                         }
                     </span>
 
-                    <span className={css.SpanSign}>{this.state.sign}</span>
+                    <span className='SpanSign'>{this.state.sign}</span>
 
                     <span>
                         {
-                            this.state.num2 > this.state.num1 
+                            this.state.num2 <= this.state.num1 
                             ? 
                             this.state.num2
                             :
@@ -512,15 +514,15 @@ class Main extends Component {
 
                 <div className={result.join(' ')}>
 
-                    <span className={css.Res1} onClick={this.state.animation ? () => this.onScore(this.state.pos1) : null}>
+                    <span className='Res1' onClick={this.state.animation ? () => this.onScore(this.state.pos1) : null}>
                         {this.state.pos1}
                     </span>
 
-                    <span className={css.Res2} onClick={this.state.animation ? () => this.onScore(this.state.pos2) : null}>
+                    <span className='Res2' onClick={this.state.animation ? () => this.onScore(this.state.pos2) : null}>
                         {this.state.pos2}
                     </span>
 
-                    <span className={css.Res3} onClick={this.state.animation ? () => this.onScore(this.state.pos3) : null}>
+                    <span className='Res3' onClick={this.state.animation ? () => this.onScore(this.state.pos3) : null}>
                         {this.state.pos3}
                     </span>
 

@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 
 import {connect} from 'react-redux';
 
-import css from './Sidebar.module.css';
+// import css from './Sidebar.module.css';
+
+import '../../Sass/Sidebar.scss';
 
 const Sidebar = (props) => {
 
@@ -38,24 +40,24 @@ const Sidebar = (props) => {
 
     // console.log('sidebar', digit)
     return(
-        <div className={css.DivSidebar}>
+        <div className='DivSidebar'>
 
             <h1>Your Score</h1>
 
             <h3>{props.score} : points</h3>
 
-            <div className={css.DivOption}>
+            <div className='DivOption'>
 
-                <form className={css.Form} 
+                <form className='Form '
                     // onSubmit={handleSubmit}
                     >
                 
 
                     <p>Select Number of Digits:</p>
 
-                    <div className={css.FormDivContainer}>
+                    <div className='FormDivContainer'>
 
-                        <div className={css.FormDiv}>
+                        <div className='FormDiv'>
                             <input type="radio" value="1"
                                 checked={digit === 1}
                                 onChange={() => {setDigits(1); props.setDigit(1)}}/>
@@ -63,14 +65,14 @@ const Sidebar = (props) => {
                         </div>
                         
                         
-                        <div className={css.FormDiv}>
+                        <div className='FormDiv'>
                             <input type="radio" value="2"
                                 checked={digit === 2}
                                 onChange={() => {setDigits(2); props.setDigit(2)}}/>
                             <label htmlFor="two">Two Digits</label>
                         </div>
 
-                        <div className={css.FormDiv}>
+                        <div className='FormDiv'>
                             <input type="radio" value="3"
                                 checked={digit === 3}
                                 onChange={() => {setDigits(3); props.setDigit(3)}}/>
