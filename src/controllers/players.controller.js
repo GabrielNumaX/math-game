@@ -7,22 +7,42 @@ const playersController = {};
 
 playersController.getPlayers = async (req,res) => {
 
-    const players = await playersModel.find()
-                            .sort({position: 1})
+    const level1 = await playersModel
+                            .find({level: 1})
+                            .sort({points: -1})
+                            .limit(10);
+    
+    const level2 = await playersModel
+                            .find({level: 2})
+                            .sort({points: -1})
+                            .limit(10);
+
+    const level3 = await playersModel
+                            .find({level: 3})
+                            .sort({points: -1})
+                            .limit(10);
 
 
-    console.log(players);
-    res.json(players)
+
+    let levelArray = [];
+
+    levelArray.push(level1, level2, level3)
+    // console.log(players);
+    // res.json(level1);
+    // res.json(level2)
+    // res.json(level3);
+    res.send(levelArray);
 }
+
 
 playersController.postPlayer = async (req, res) => {
 
-    const {player, points, position} = req.body;
+    const {player, points, level} = req.body;
 
     const newPlayer = new playersModel({
         player: player,
         points: points,
-        position: position
+        level: level,
     });
 
     await newPlayer.save();
@@ -30,20 +50,20 @@ playersController.postPlayer = async (req, res) => {
     res.json(newPlayer);
 }
 
-async function processPos(array, obj) {
+// async function processPos(array, obj) {
 
-    newArray = [];
-    auxArray = [];
+//     newArray = [];
+//     auxArray = [];
 
-    array.map((item, pos) => {
+//     array.map((item, pos) => {
 
-        if(item.points >= obj.points){
+//         if(item.points >= obj.points){
 
-            newArray.push(item);
-        }
-    })
+//             newArray.push(item);
+//         }
+//     })
 
-}
+// }
 
 // notesController.getNotes = async (req, res) => {
 

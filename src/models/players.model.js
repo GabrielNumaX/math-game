@@ -10,9 +10,12 @@ const playersSchema = new Schema({
     points: {
         type: Number
     },
-    position: {
+    // position: {
+    //     type: Number,
+    //     default: 1
+    // },
+    level: {
         type: Number,
-        default: 1
     },
     date: {
         type: Date,

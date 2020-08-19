@@ -55,7 +55,7 @@ if points lesser and pos < 7
 
 const player = {
     player: 'new',
-    points: 700
+    points: 900
 }
 
 let position = 1;
@@ -67,115 +67,71 @@ function processPos(array, newArray, obj, pos) {
 
     for(let i = 0; i < array.length; i++){
 
-        console.log(pos, 'pos')
+        console.log('pos MAIN', pos);
 
-        if(pos >= 7){
-            break;
-        }
-        else if(array[i].points < obj.points){
+        if(obj.points > array[i].points){
 
-            console.log('obj greater');
+            obj.position = pos;
 
-            console.log('greater pos', pos);
-
-            if(flag === false){
-
-                obj.position = pos;
-
-                newArray.push(obj); 
-
-                flag = true;
-
-                pos += 1;
-
-                for(let j = i; j < array.length; j++){
-    
-                    if(pos >= 7){
-                        break;
-                    }
-    
-                    console.log('pos for greater', pos);
-
-                    array[j].position = pos;
-    
-                    newArray.push(array[j]);
-
-                    pos += 1;
-                }
-
-                break;
-            }
-        }
-        else if(array[i].points > obj.points){
-
-            console.log('obj minor');
-        }
-        else if(array[i].points === obj.points){
-            console.log('obj equal');
-
-            newArray.push(array[i]);
+            newArray.push(obj);
 
             pos += 1;
 
-            //aca hay que chequear q el proximo no sea equal
+            for(let j = i; j < array.length; j ++){
 
-            for(let j = i+1; j < array.length; j++){
+                // console.log('array J, pos', pos);
 
-                if(pos >= 7){
-                    break;
+                if(pos >= 10){
+
+                    // console.log('break');
+                    return newArray;
                 }
-                else if(array[j].points === obj.points){
+                else {
 
                     array[j].position = pos;
 
                     newArray.push(array[j]);
                 }
-                else {
+                pos += 1;
+            }
+
+            return newArray;
+        }
+        else if(obj.points < array[i].points){
+
+            console.log('pos else if <', pos);
+
+            for(let j = i; j < array.length; j++){
+
+                if(pos > 10){
+
+                    return newArray;
+                }
+                
+                if(array[j].points >= obj.points && flag === false){
+
+                    newArray.push(array[j]);
+                }
+                else if(array[j].points < obj.points && flag === false){
+
+                    console.log('flag')
                     obj.position = pos;
 
                     newArray.push(obj);
 
-                    pos += 1;
-
-                    break;
+                    flag = true;
                 }
-                pos += 1;
+                else if(flag === true){
+
+                    newArray.push(array[j]);
+                }
+
+                pos +=1;
             }
 
-            console.log('pos equal', pos);
-
-            // if(flag === false){
-
-            //     obj.position = pos;
-
-            //     newArray.push(obj); 
-
-            //     flag = true;
-
-            //     pos += 1;
-
-            //     for(let j = i + 1; j < array.length; j++){
-    
-            //         if(pos >= 7){
-            //             break;
-            //         }
-    
-            //         console.log('pos for equal', pos);
-
-            //         array[j].position = pos;
-    
-            //         newArray.push(array[j]);
-
-            //         pos += 1;
-            //     }
-            //     break;
-            // }
         }
 
-        pos += 1;
     }
-
-    // newArray.push('return arr')
 
     return newArray;
 }
