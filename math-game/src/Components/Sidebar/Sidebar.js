@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import {connect} from 'react-redux';
 
-// import css from './Sidebar.module.css';
+import {Link} from 'react-router-dom';
 
 import '../../Sass/Sidebar.scss';
 
@@ -42,17 +42,25 @@ const Sidebar = (props) => {
     return(
         <div className='DivSidebar'>
 
-            <h1>Your Score</h1>
+            <div className='DivSidebarBtn'>
 
-            <h3>{props.score} : points</h3>
+                <Link to='/'>Home</Link>
+
+                <Link to='/top-players'>Top Players</Link>
+                
+            </div>
+
+            <div className='DivScore'>
+                <h1>Your Score</h1>
+
+                <h3>{props.score} : points</h3>
+            </div>
 
             <div className='DivOption'>
 
                 <form className='Form '
                     // onSubmit={handleSubmit}
                     >
-                
-
                     <p>Select Number of Digits:</p>
 
                     <div className='FormDivContainer'>
@@ -80,15 +88,8 @@ const Sidebar = (props) => {
                         </div>
 
                     </div>
-
-                    {/* <div className={css.FormDivInput}>
-                        <input type="submit" value="Apply"></input>
-                    </div> */}
                 </form>
-
             </div>
-
-
         </div>
     )
 }

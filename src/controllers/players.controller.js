@@ -1,4 +1,4 @@
-const arrayMove = require('array-move');
+// const arrayMove = require('array-move');
 const playersModel = require('../models/players.model');
 
 const playersController = {};
@@ -48,6 +48,38 @@ playersController.postPlayer = async (req, res) => {
     await newPlayer.save();
 
     res.json(newPlayer);
+}
+
+playersController.getPoints = async (req, res) => {
+
+    const {level} = req.params;
+    const {points} = req.params;
+
+    const checkPoints = await playersModel
+                            .find({level: level})
+                            .sort({points: -1})
+                            .limit(10)
+
+    if(checkPoints.length < 10){
+
+        res.json({message: true});
+    }
+    else if(points > checkPoints[checkPoints.length - 1].points){
+
+        res.json({message: true});
+    }
+    else {
+
+        res.json({message: false});
+    }
+
+    // console.log('points', points)
+
+    // console.log(checkPoints[checkPoints.length - 1].points)
+
+    // console.log('arr.length')
+    // console.log(checkPoints.length)
+
 }
 
 // async function processPos(array, obj) {

@@ -45,22 +45,11 @@ class Main extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        // if(prevProps.digitProp !== this.props.digitProp) {
-
-        //     this.setNumber();
-        // }
-
-        // if(prevState.res1 !== this.state.res1) {
-        //     // console.log('didUp res')
-
-        //     this.setPos();
-        //     // this.setNumber();
-        // }
+       
         if(prevState.rightRes !== this.state.rightRes) {
             // console.log('didUp res')
 
             this.setPos();
-            // this.setNumber();
         }
         else if(prevProps.gameToggleProps !== this.props.gameToggleProps){
 
@@ -74,9 +63,8 @@ class Main extends Component {
                 animationPlay: true,
             })
 
-            this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`
+            this.opRef.current.style.animationDuration = `${this.state.animationDuration}ms`;
 
-            // console.log(this.opRef.current.style.animationDuration)
         }
     }
 
@@ -341,6 +329,34 @@ class Main extends Component {
         }
     }
 
+    gameReset = () => {
+
+        console.log('game Reset')
+
+        this.opRef.current.style.backgroundColor = 'cornsilk';
+
+        this.opRef.current.style.animationPlayState = 'running';
+
+        this.setState({
+            start: false,
+            animation: false,
+            animationPlay: false,
+            animationPause: false,
+            animationDuration: 10000,
+            num1: null,
+            num2: null,
+            res1: null,
+            res2: null,
+            res3: null,
+            rightRes: null,
+            pos1: null,
+            pos2: null,
+            pos3: null,
+            sign: null,
+            loseModal: false,
+        });
+    }
+
     /**
      * this function checks that random position equals rightRes
      * then pauses animation, changes color of animation and increments score
@@ -386,9 +402,6 @@ class Main extends Component {
                 // console.log('CLICK');
 
             }, 330);
-
-            
-            
         }
         else {
             this.opRef.current.style.backgroundColor = 'red';
@@ -402,23 +415,21 @@ class Main extends Component {
 
             this.opRef.current.style.animationPlayState = 'paused';
 
-            setTimeout(() => { 
-                // this.opRef.current.style.animation = 'none';
+            // setTimeout(() => { 
+            //     // this.opRef.current.style.animation = 'none';
               
-                // this.opRef.current.style.backgroundColor = 'cornsilk';
+            //     // this.opRef.current.style.backgroundColor = 'cornsilk';
 
-                // ESTO SE DEJA COMENTADO HASTA HACER EL GAME OVER
-                // this.setState({
-                //     start: false,
-                // })
+            //     // ESTO SE DEJA COMENTADO HASTA HACER EL GAME OVER
+            //     // this.setState({
+            //     //     start: false,
+            //     // })
 
-                // this.props.gameToggle();
+            //     // this.props.gameToggle();
 
-            }, 330);
+            // }, 330);
         }
     }
-
-   
 
     render() {
 
@@ -532,7 +543,10 @@ class Main extends Component {
                     this.state.loseModal ? 
                         <LoseModal 
                             close={() => this.setState({loseModal: false})}
-                            points={this.props.score}                />
+                            points={this.props.score}
+                            level={this.props.digitProp}
+                            resetScore={() => this.props.resetScore()}
+                            gameReset={() => this.gameReset()}/>          
                     : 
                     null
                 }

@@ -8,7 +8,7 @@
 }
 
 .ModalContent {
-    margin: 10px auto 0;
+    margin: 30px auto 0;
     width: 70%;
     height: auto;
     display: flex;
@@ -23,6 +23,7 @@
     h5 {
         font-size: 52px;
         margin: 0;
+        margin-top: 20px;
         margin-bottom: 10px;
         color: #33334d;
     }
@@ -41,6 +42,29 @@
             margin-bottom: 12px; */
             color: rgb(19, 167, 0)
         }
+    }
+
+    .PositionCheck {
+
+        .Span1 {
+            animation: text1 5s infinite;
+        }
+
+        .Span2 {
+            animation: text2 5s infinite;
+        }
+    }
+}
+
+.BtnPlayAgain {
+    background-color: #33334d;
+    border: none;
+    color: whitesmoke;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    &:hover {
+        cursor: pointer;
     }
 }
 
@@ -119,5 +143,77 @@
         &:hover {
             cursor: pointer;
         }
+    }
+}
+
+@keyframes text1 {
+    0% {
+        color: hsl(7, 80%, 40%);
+    }
+    10% {
+        color: hsl(69, 80%, 40%);
+    }
+    20% {
+        color: hsl(79, 80%, 40%);
+    }
+    30% {
+        color: hsl(111, 80%, 40%);
+    }
+    40% {
+        color: hsl(143, 80%, 40%);
+    }
+    50% {
+        color: hsl(176, 80%, 40%);
+    }
+    60% {
+        color: hsl(208, 80%, 40%);
+    }
+    70% {
+        color: hsl(241, 80%, 40%);
+    }
+    80% {
+        color: hsl(273, 80%, 40%);
+    }
+    90% {
+        color: hsl(307, 80%, 40%);
+    }
+    100% {
+        color: hsl(340, 80%, 40%);
+    }
+}
+
+@keyframes text1 {
+    0% {
+        color: hsl(340, 80%, 40%);    
+    }
+    10% {
+        color: hsl(307, 80%, 40%);    
+    }
+    20% {
+        color: hsl(273, 80%, 40%);    
+    }
+    30% {
+        color: hsl(241, 80%, 40%);   
+    }
+    40% {
+        color: hsl(208, 80%, 40%);
+    }
+    50% {
+        color: hsl(176, 80%, 40%);
+    }
+    60% {
+        color: hsl(143, 80%, 40%);
+    }
+    70% {
+        color: hsl(111, 80%, 40%);
+    }
+    80% {
+        color: hsl(79, 80%, 40%);
+    }
+    90% {
+        color: hsl(69, 80%, 40%);
+    }
+    100% {
+        color: hsl(7, 80%, 40%);
     }
 }
