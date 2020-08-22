@@ -50,46 +50,51 @@ const Sidebar = (props) => {
                 
             </div>
 
-            <div className='DivScore'>
-                <h1>Your Score</h1>
+            <div className='DivScoreAndOptionContainer'>
+                
+                <div className='DivScore'>
+                    <h1>Your Score</h1>
 
-                <h3>{props.score} : points</h3>
+                    <h3>{props.score} : points</h3>
+                </div>
+
+                <div className='DivOption'>
+
+                    <form className='Form '
+                        // onSubmit={handleSubmit}
+                        >
+                        <p>Select Number of Digits:</p>
+
+                        <div className='FormDivContainer'>
+
+                            <div className='FormDiv'>
+                                <input type="radio" value="1"
+                                    checked={digit === 1}
+                                    onChange={() => {setDigits(1); props.setDigit(1)}}/>
+                                <label htmlFor="one">One Digit</label>
+                            </div>
+                            
+                            
+                            <div className='FormDiv'>
+                                <input type="radio" value="2"
+                                    checked={digit === 2}
+                                    onChange={() => {setDigits(2); props.setDigit(2)}}/>
+                                <label htmlFor="two">Two Digits</label>
+                            </div>
+
+                            <div className='FormDiv'>
+                                <input type="radio" value="3"
+                                    checked={digit === 3}
+                                    onChange={() => {setDigits(3); props.setDigit(3)}}/>
+                                <label htmlFor="three">Three Digits</label>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
             </div>
 
-            <div className='DivOption'>
-
-                <form className='Form '
-                    // onSubmit={handleSubmit}
-                    >
-                    <p>Select Number of Digits:</p>
-
-                    <div className='FormDivContainer'>
-
-                        <div className='FormDiv'>
-                            <input type="radio" value="1"
-                                checked={digit === 1}
-                                onChange={() => {setDigits(1); props.setDigit(1)}}/>
-                            <label htmlFor="one">One Digit</label>
-                        </div>
-                        
-                        
-                        <div className='FormDiv'>
-                            <input type="radio" value="2"
-                                checked={digit === 2}
-                                onChange={() => {setDigits(2); props.setDigit(2)}}/>
-                            <label htmlFor="two">Two Digits</label>
-                        </div>
-
-                        <div className='FormDiv'>
-                            <input type="radio" value="3"
-                                checked={digit === 3}
-                                onChange={() => {setDigits(3); props.setDigit(3)}}/>
-                            <label htmlFor="three">Three Digits</label>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
         </div>
     )
 }

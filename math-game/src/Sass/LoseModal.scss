@@ -217,3 +217,112 @@
         color: hsl(7, 80%, 40%);
     }
 }
+
+@media (min-width: 220px) and (max-width: 480px) {
+  
+    .ModalContent {
+        margin: 20% auto 0;
+        width: 90%;
+        padding: 0 10px 20px;
+
+        h5 {
+            font-size: 38px;
+            margin: 0;
+            margin-top: 16px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+            margin-bottom: 12px;
+            /* margin-top: 20px;
+            color: #33334d; */
+
+            span{
+                font-size: 20px;
+            }
+        }
+
+        .PositionCheck {
+
+            .Span1 {
+                animation: text1 5s infinite;
+            }
+
+            .Span2 {
+                animation: text2 5s infinite;
+            }
+        }
+    }
+
+    .BtnPlayAgain {
+        background-color: #33334d;
+        border: none;
+        color: whitesmoke;
+        padding: 10px 20px;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+
+    .FormModal {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+        /* align-items: center; */
+
+        p{
+            /* color: #33334d; */
+            padding: 0 20px;
+            font-size: 18px;
+        }
+    }
+
+
+    .FormDivModal {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 8px;
+        margin-bottom: 8px;
+        height: 100px;
+        justify-content: space-around;
+        // background-color: green;
+        padding: 10px 20px;
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+            /* margin-bottom: 10px; */
+        }
+
+        input {
+            width: 100%;
+            font-size: 18px;
+            padding: 5px 10px;
+            border: 1px solid #33334d;
+            border-radius: 5px;
+        }
+    }
+
+
+    .FormDivBtnModal {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        input {
+            font-size: 20px;
+            border-radius: 5px;
+            border: none;
+            padding: 8px 16px;
+        }
+    }
+
+}

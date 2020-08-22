@@ -8,7 +8,7 @@
 
 .ModalContentRules {
     margin: 10px auto 0;
-    width: 90%;
+    width: 95%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -53,6 +53,117 @@
 
         &:hover {
             cursor: pointer;
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .ModalContentRules {
+    
+        h5 {
+            font-size: 42px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.5;
+            padding: 12px 28px;
+        }
+    
+        button {
+            font-size: 28px;
+            padding: 12px 22px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+    
+        }
+    }
+}
+
+@media (max-width: 741px) and (orientation: landscape){
+
+    .ModalContentRules {
+    
+        h5 {
+            font-size: 28px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            margin: 0;
+            font-size: 18px;
+            padding: 12px 26px;
+            line-height: 1.2;
+        }
+    
+        button {
+            font-size: 18px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+    
+        }
+    }
+
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    .ModalContentRules {
+    
+        h5 {
+            font-size: 38px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            margin: 0;
+            font-size: 22px;
+            padding: 12px 28px;
+        }
+    
+        button {
+            font-size: 22px;
+            padding: 12px 22px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+    
+        }
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  
+    .ModalContentRules {
+    
+        h5 {
+            font-size: 32px;
+            margin: 0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    
+        p {
+            margin: 0;
+            font-size: 20px;
+            padding: 12px 26px;
+        }
+    
+        button {
+            font-size: 20px;
+            padding: 8px 12px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+    
         }
     }
 }

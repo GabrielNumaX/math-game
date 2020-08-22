@@ -7,7 +7,6 @@
     color: whitesmoke;
     align-items: center;
     // justify-content: space-evenly;
-
     .DivScore {
         margin-top: 20px;
         h3 {
@@ -17,6 +16,12 @@
         }
     }
     
+}
+
+.DivScoreAndOptionContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -107,6 +112,172 @@
             color: rgba(255, 255, 255, 1);
             background-color: rgba(0, 0, 0, .4);
             cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 825px) {
+
+    .DivSidebar {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: #33334d;
+        color: whitesmoke;
+        align-items: center;
+        // justify-content: space-evenly;
+        .DivScore {
+            margin-top: 20px;
+
+            h1 {
+                font-size: 26px;
+            }
+            h3 {
+                font-size: 24px;
+            }
+        }
+        
+    }
+
+    .DivOption {
+        display: flex;
+        /* background-color: green; */
+        margin-top: 40px;
+    }
+    
+    .Form {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        font-size: 16px;
+    
+        p{
+            font-size: 18px;
+            padding: 0 5%;
+        }
+    
+        input[type="radio"]{
+            margin-right: 10px;
+        }
+    }
+    
+    .FormDiv {
+        display: flex;
+        /* align-items: center; */
+        /* background-color: red; */
+        margin-bottom: 10px;
+        // width: 140px;
+        width: 100%;
+        margin-left: 15%;
+        /* margin-left:20px; */
+    }
+    
+    .DivSidebarBtn {
+        width: 100%;
+        display: flex;
+        // background-color: green;
+        margin-top: 20px;
+        justify-content: space-around;
+    
+        a {
+            font-size: 16px;
+            padding: 4px 8px;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+
+// @media (min-width: 481px) and (max-width: 767px) {
+  
+//     //CSS
+    
+// }
+
+@media (min-width: 220px) and (max-width: 480px) {
+
+    .DivSidebar {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // justify-content: center;
+        .DivScore {
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 50%;
+            align-items: center;
+            // justify-content: center;
+            // background-color: yellowgreen;
+
+            h1 {
+                font-size: 24px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+        }
+        
+    }
+
+    .DivScoreAndOptionContainer {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0 0;
+    }
+
+    .DivOption {
+        display: flex;
+        /* background-color: green; */
+        margin-top: 0;
+        width: 50%;
+    }
+    
+    .Form {
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        font-size: 16px;
+    
+        p{
+            font-size: 16px;
+            padding: 0;
+        }
+    
+        input[type="radio"]{
+            margin-right: 10px;
+        }
+    }
+    
+    .FormDiv {
+        display: flex;
+        /* align-items: center; */
+        /* background-color: red; */
+        margin-bottom: 10px;
+        // width: 140px;
+        width: 100%;
+        margin-left: 15%;
+        /* margin-left:20px; */
+    }
+    
+    .DivSidebarBtn {
+        width: 100%;
+        display: flex;
+        // background-color: green;
+        margin-top: 20px;
+        justify-content: space-around;
+    
+        a {
+            font-size: 16px;
+            padding: 4px 8px;
+            letter-spacing: 1px;
         }
     }
 }

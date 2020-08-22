@@ -46,7 +46,7 @@ const LoseModal = (props) => {
             axios.get(API.GET_POINTS+`${props.points}/${props.level}`)
                 .then(res => {
 
-                    console.log(res.data);
+                    // console.log(res.data);
                         
 
                     if(res.data.message){
@@ -77,10 +77,6 @@ const LoseModal = (props) => {
         <div className='Modal'>
 
             <div className='ModalContent'>
-
-                {/* <div className='DivClose'>
-                    <span onClick={props.close}>&times;</span>
-                </div> */}
 
                 <h5>Game Over</h5>
 
