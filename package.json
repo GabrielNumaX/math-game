@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon /index.js",
+    "start": "node index.js",
     "heroku-postbuild": "cd math-game && npm install && npm run build"
   },
   "author": "NumaX",
