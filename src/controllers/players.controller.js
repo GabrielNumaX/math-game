@@ -1,5 +1,6 @@
 // const arrayMove = require('array-move');
 const playersModel = require('../models/players.model');
+const { Promise } = require('mongoose');
 
 const playersController = {};
 
@@ -27,15 +28,12 @@ playersController.getPlayers = async (req,res) => {
     let levelArray = [];
 
     levelArray.push(level1, level2, level3)
-    // console.log(players);
-    // res.json(level1);
-    // res.json(level2)
-    // res.json(level3);
+
     res.send(levelArray);
 }
 
 
-playersController.postPlayer = async (req, res) => {
+playersController.postPlayer = async (req, res, next) => {
 
     const {player, points, level} = req.body;
 
@@ -48,6 +46,28 @@ playersController.postPlayer = async (req, res) => {
     await newPlayer.save();
 
     res.json(newPlayer);
+
+    next();
+}
+
+playersController.delPos = async (req, res) => {
+
+    const {level, points} = req.body;
+
+    const playerList = await playersModel
+                                .find({level: level}) 
+                                .sort({points: -1})
+                                .skip(10)
+                                .exec(function(err, player){
+                                    if(err){
+                                        console.log(err)
+                                    }
+
+                                    Promise.all(player.map(async (item) => {
+                                        await playersModel.findByIdAndRemove(item._id)
+                                    }))
+                                })
+                                
 }
 
 playersController.getPoints = async (req, res) => {
@@ -60,26 +80,19 @@ playersController.getPoints = async (req, res) => {
                             .sort({points: -1})
                             .limit(10)
 
+
     if(checkPoints.length < 10){
 
         res.json({message: true});
     }
     else if(points > checkPoints[checkPoints.length - 1].points){
-
+        
         res.json({message: true});
     }
     else {
 
         res.json({message: false});
     }
-
-    // console.log('points', points)
-
-    // console.log(checkPoints[checkPoints.length - 1].points)
-
-    // console.log('arr.length')
-    // console.log(checkPoints.length)
-
 }
 
 // async function processPos(array, obj) {

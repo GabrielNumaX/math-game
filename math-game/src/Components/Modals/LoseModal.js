@@ -125,11 +125,14 @@ const LoseModal = (props) => {
                 {
                     noScore 
                     ?
-                    <p>Your Score is Low <button className='BtnPlayAgain' 
-                                            onClick={playAgain}>
-                                                Play Again
-                                            </button>
-                    </p>
+                    <div className='DivLowScore'>
+                        <p>Your Score is Low</p>
+                        
+                        <button className='BtnPlayAgain' 
+                                                onClick={playAgain}>
+                                                    Play Again
+                        </button>
+                    </div>
                     :
                     null
                 }

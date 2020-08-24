@@ -188,69 +188,70 @@
 
 @keyframes opDownCellPortrait {
     0% {
-        top: 30%;
+        top: calc(140px + 0%);
     }
     5% {
-        top: 32%;
+        top: calc(140px + 3%);
     }
     10% {
-        top: 35%;
+        top: calc(140px + 5%);
     }
     15% {
-        top: 38%;
+        top: calc(140px + 8%);
     }
     20% {
-        top: 40%;
+        top: calc(140px + 10%);
     }
     25% {
-        top: 42%;
+        top: calc(140px + 12%);
     }
     30% {
-        top: 45%;
+        top: calc(140px + 14%);
     }
     35% {
-        top: 47%;
+        top: calc(140px + 16%);
     }
     40% {
-        top: 50%;
+        top: calc(140px + 18%);
     }
     45% {
-        top: 52%;
+        top: calc(140px + 20%);
     }
     50% {
-        top: 55%;
+        top: calc(140px + 23%);
     }
     55% {
-        top: 58%;
+        top: calc(140px + 25%);
     }
     60% {
-        top: 61%;
+        top: calc(140px + 28%)
     }
     65% {
-        top: 63%;
+        top: calc(140px + 30%);
     }
     70% {
-        top: 65%;
+        top: calc(140px + 33%);
     }
     75% {
-        top: 68%;
+        top: calc(140px + 36%);
     }
     80% {
-        top: 71%;
+        top: calc(140px + 40%);
     }
     85% {
-        top: 74%;
+        top: calc(140px + 43%);
     }
     90% {
-        top: 76%;
+        top: calc(140px + 48%);
     }
     95% {
-        top: 78%;
+        top: calc(140px + 52%);
     }
     100% {
-        top: 80%;
+        top: calc(100% - 90px);
     }
 }
+
 
 @media (min-width: 481px) and (max-width: 767px) {
            
@@ -295,17 +296,18 @@
     .DivMain {
         width: 100%;
         height: 100%;
+        // height: calc(100% - 150px);
     }
 
     .ImgGame {
         background-position: 50% 100%;
         background-repeat: no-repeat;
         width: 100%;
-        height: 70%;
+        height: calc(100% - 140px);
     }
 
     .StartBtn {
-        font-size: 1.2rem;
+        font-size: 1rem;
         padding: 10px 20px;
     }
 
@@ -314,14 +316,14 @@
         background-color: cornsilk;
         border-radius: 25px;
         border: 2px solid black;
-        min-width: 90px;
-        padding: 8px 12px;
+        min-width: 50px;
+        padding: 4px 10px;
         text-align: center;
-        font-size: 26px;
+        font-size: 20px;
         position: absolute;
-        top: 30%;
+        top: 140px;
         margin: auto;
-        margin-top: 5px;
+        // margin-top: 5px;
         display: block;
     }
 
@@ -340,17 +342,17 @@
     .SpanSign {
         /* color: rgb(19, 167, 0); */
         margin: 0 10px;
-        font-size: 32px;
+        font-size: 26px;
     }
 
     %Res {
-        font-size: 35px;
-        margin: 0 20px;
+        font-size: 22px;
+        margin: 0 12px 16px;
         /* margin-bottom: 30px; */
         background-color: lightskyblue;
         border-radius: 25px;
         border: 2px solid white;
-        padding: 0px 20px;
+        padding: 0px 16px;
     }
 
 }

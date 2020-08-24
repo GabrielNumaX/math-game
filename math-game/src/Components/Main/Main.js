@@ -49,7 +49,7 @@ class Main extends Component {
         }
         else if(prevProps.gameToggleProps !== this.props.gameToggleProps){
 
-            // console.log('didUp Game toggle');
+            console.log('didUp Game toggle');
 
             this.setNumber();
 
@@ -78,7 +78,15 @@ class Main extends Component {
         // this is for cell phone on portrait
         if(window.innerWidth <= 480){
 
-            if(rect.top >= (window.innerHeight * 80) / 100){
+            // console.log(window.innerHeight);
+            // console.log(rect.bottom);
+
+            // const height = window.innerHeight;
+
+            if(rect.bottom >= (window.innerHeight - 60)){
+
+                // console.log(window.innerHeight);
+                // console.log(rect.top);
 
                 el.style.backgroundColor = 'red';
 
@@ -86,6 +94,7 @@ class Main extends Component {
                     animation: false,
                     animationPause: true,
                     loseModal: true,
+                    // start: false,
                 })
             }
 
@@ -96,11 +105,21 @@ class Main extends Component {
 
                 el.style.backgroundColor = 'red';
 
+                // console.log('before');
+                // console.log(this.state)
+
+                console.log('STOP');
+
                 this.setState({
                     animation: false,
                     animationPause: true,
+                    // animationPlay: false,
                     loseModal: true,
+                    // start: false,
                 })
+
+                // console.log('after');
+                // console.log(this.state);
             }
         }
 
@@ -334,6 +353,8 @@ class Main extends Component {
                 animationPlay: true,
             })
         }
+
+        console.log(this.state);
     }
 
     gameReset = () => {
@@ -434,6 +455,8 @@ class Main extends Component {
 
     render() {
 
+        console.log('render');
+
         if(this.state.animation) {
             this.getPosition();
         }
@@ -462,6 +485,9 @@ class Main extends Component {
             
             operation.push('OperationAnimationPause')
         }
+
+        console.log('OPERATION ARR')
+        console.log(operation);
 
         return(
             <div className='DivMain'>

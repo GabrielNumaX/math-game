@@ -5,13 +5,14 @@ const {
     getPlayers,
     postPlayer,
     getPoints,
+    delPos,
     // postNote, 
     // putNote, 
     // deleteNote
 } = require('../controllers/players.controller');
 
 router.get('/', getPlayers);
-router.post('/', postPlayer);
+router.post('/', postPlayer, delPos);
 router.get('/position/:points/:level', getPoints);
 
 // router.get('/', getNotes);
