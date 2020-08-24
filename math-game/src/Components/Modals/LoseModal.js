@@ -17,6 +17,13 @@ const LoseModal = (props) => {
 
         e.preventDefault();
 
+        if(name === ''){
+
+            alert('Plese enter your Name.');
+
+            return;
+        }
+
         setSave('Saving...')
 
         axios.post(API.GET_POST_PLAYER, {
